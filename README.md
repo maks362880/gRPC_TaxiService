@@ -1,6 +1,6 @@
 # TaxiService
 
-## Описание проекта
+## 1. Описание проекта
 
 TaxiService — это микросервисное приложение для управления заказами такси. Система включает в себя несколько микросервисов, каждый из которых отвечает за определенные аспекты работы сервиса. Основные компоненты системы:
 
@@ -11,7 +11,7 @@ TaxiService — это микросервисное приложение для 
 - **Сервис оплаты (Payment Service)**: управляет платежами и трансакциями.
 - **Сервис геолокации (Geolocation Service)**: отвечает за определение географического положения пользователей и такси.
  
-## Порты сервисов:
+## 2. Порты сервисов:
 
    После запуска сервисов вы сможете получить доступ к каждому из них по следующим адресам:
 
@@ -22,7 +22,7 @@ TaxiService — это микросервисное приложение для 
    - Payment Service: http://localhost:8005
    - Geolocation Service: http://localhost:8006
 
-## Технологии для реализации проекта:
+## 3. Технологии для реализации проекта:
 
 - **Один репозиторий для всех микросервисов (Monorepo)**
 - **Spring Boot**
@@ -39,7 +39,7 @@ TaxiService — это микросервисное приложение для 
 
 *Технологии, отмеченные звездочкой(\*), являются необязательными, но желательными для использования в проекте.*
 
-### Структура проекта:
+### 4. Структура проекта:
 ```plaintext
 taxiservice/
 │
@@ -72,54 +72,51 @@ taxiservice/
     ├── src/
     ├── pom.xml
     └── README.md
+```
+### 5. Реализация микросервисов
 
-### Реализация микросервисов
+#### 5.1 user-service
+- Функции: управление пользователями, включая регистрацию, аутентификацию и получение информации о пользователях.
 
-1. user-service:  
-   - Технологии: Spring Boot, Spring Security для аутентификации и авторизации, Hibernate для работы с базой данных, PostgreSQL для хранения данных пользователей.
-   - Функции: регистрация пользователей, аутентификация (JWT), управление профилем пользователей.
-   - Endpoints:
-     - POST /api/users/register: регистрация нового пользователя.
-     - POST /api/users/login: аутентификация пользователя.
-     - GET /api/users/{id}: получение информации о пользователе.
+#### gRPC Методы:
+- **Register (RegisterRequest) returns (RegisterResponse)** - регистрация нового пользователя.
+- **Login (LoginRequest) returns (LoginResponse)** - авторизация пользователя.
+- **GetUser (GetUserRequest) returns (GetUserResponse)** - получение данных о пользователе.
 
-2. taxi-service:  
-   - Технологии: Spring Boot, Hibernate, PostgreSQL.
-   - Функции: управление автомобилями, их состоянием и местоположением, отслеживание доступных такси.
-   - Endpoints:
-     - POST /api/taxis: добавление нового такси.
-     - PUT /api/taxis/{id}: обновление информации о такси.
-     - GET /api/taxis: получение списка всех такси.
+#### 5.2 taxi-service
+- Функции: управление автомобилями, их состоянием и местоположением в системе такси.
 
-3. order-service:  
-   - Технологии: Spring Boot, Hibernate, PostgreSQL.
-   - Функции: создание, обновление и отмена заказов на такси.
-   - Endpoints:
-     - POST /api/orders: создание нового заказа.
-     - PUT /api/orders/{id}: обновление статуса заказа.
-     - DELETE /api/orders/{id}: отмена заказа.
+#### gRPC Методы:
+- **AddTaxi (AddTaxiRequest) returns (AddTaxiResponse)** - добавление нового такси в систему.
+- **UpdateTaxi (UpdateTaxiRequest) returns (UpdateTaxiResponse)** - обновление информации об уже зарегистрированном такси.
+- **ListTaxis (ListTaxisRequest) returns (ListTaxisResponse)** - получение списка всех доступных такси и их информации.
 
-4. notification-service:  
-   - Технологии: Spring Boot, Kafka (для отправки уведомлений).
-   - Функции: отправка уведомлений пользователю о статусе его заказа (например, когда такси назначено).
-   - Endpoints:
-     - POST /api/notifications: отправка уведомления (возможно, через Kafka).
+#### 5.3 order-service
+- Функции: создание, обновление и выполнение заказов на такси, а также отправка уведомлений пользователям о статусе заказов.
 
-5. payment-service:  
-   - Технологии: Spring Boot, Hibernate, PostgreSQL.
-   - Функции: управление платежами и транзакциями.
-   - Endpoints:
-     - POST /api/payments: инициирование платежа.
-     - GET /api/payments/{id}: получение статуса платежа.
+#### gRPC Методы:
+- **CreateOrder(CreateOrderRequest) returns (CreateOrderResponse)** - создание нового заказа на такси.
+- **UpdateOrder(UpdateOrderRequest) returns (UpdateOrderResponse)** - обновление статуса заказа на такси.
+- **CancelOrder(CancelOrderRequest) returns (CancelOrderResponse)** - отмена заказа на такси.
+- **SendNotification(SendNotificationRequest) returns (SendNotificationResponse)** - отправка уведомления пользователю о статусе его заказа.
 
-6. geolocation-service:  
-   - Технологии: Spring Boot.
-   - Функции: определение географического положения пользователей и такси.
-   - Endpoints:
-     - GET /api/geolocation/user/{userId}: получение местоположения пользователя.
-     - GET /api/geolocation/taxi/{taxiId}: получение местоположения такси.
+#### 5.4 payment-service
+- Технологии: Spring Boot, Hibernate, PostgreSQL.
+- Функции: управление платежами и транзакциями, включая инициирование платежей и получение их статуса.
 
-### Дополнительные аспекты
+#### gRPC Методы:
+- **InitiatePayment(InitiatePaymentRequest) returns (InitiatePaymentResponse)** - инициирование платежа для заказа.
+- **GetPaymentStatus(GetPaymentStatusRequest) returns (GetPaymentStatusResponse)** - получение статуса платежа по идентификатору.
+
+#### 5.5 geolocation-service
+- Технологии: Spring Boot.
+- **Функции**: определение географического положения пользователей и такси, чтобы обеспечить точное отслеживание заказов.
+  
+#### gRPC Методы:
+- **GetUserLocation(GetUserLocationRequest) returns (GetUserLocationResponse)** - получение местоположения пользователя по идентификатору.
+- **GetTaxiLocation(GetTaxiLocationRequest) returns (GetTaxiLocationResponse)** - получение местоположения такси по идентификатору.
+
+### 6. Дополнительные аспекты
 
 - Docker: Создание Docker контейнеров для упрощения развертывания микросервисов.
 - Kubernetes (K8s): Оркестрация контейнеров и автоматизация развертывания и управления микросервисами.
