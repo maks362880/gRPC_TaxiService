@@ -24,17 +24,18 @@ TaxiService — это микросервисное приложение для 
 
 ## Технологии для реализации проекта:
 Один репозиторий для всех микросервисов (Monorepo)
-SpringBoot
-Maven
-gRPC
-Hibernate
-Postgress
-*Liqubase
-*Docker
-*K8s
-*Kafka
-*Helm
-*Istio
+SpringBoot,
+Maven,
+gRPC,
+Hibernate,
+Postgress,
+*openApi
+*Liqubase,
+*Docker,
+*K8s,
+*Kafka,
+*Helm,
+*Istio,
 
-* - неоязательные, но желательные к использованию в проекте.
+'*' - неоязательные, но желательные к использованию в проекте.
 
