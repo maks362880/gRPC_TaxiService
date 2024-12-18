@@ -44,34 +44,46 @@ TaxiService — это микросервисное приложение для 
 taxiservice/
 │
 ├── user-service/                  # Микросервис для управления пользователями
-│   ├── src/
+│   ├── src/                       # Исходный код
+│   ├── proto/                     # Протофайлы для gRPC
+│   │   └── user.proto             # Протокол для user-service
 │   ├── pom.xml                    # Maven файл
 │   └── README.md                  # Документация по микросервису
 │
 ├── taxi-service/                  # Микросервис для управления автомобилями
-│   ├── src/
-│   ├── pom.xml
-│   └── README.md
+│   ├── src/                       # Исходный код
+│   ├── proto/                     # Протофайлы для gRPC
+│   │   └── taxi.proto             # Протокол для taxi-service
+│   ├── pom.xml                    # Maven файл
+│   └── README.md                  # Документация по микросервису
 │
 ├── order-service/                 # Микросервис для обработки заказов
-│   ├── src/
-│   ├── pom.xml
-│   └── README.md
+│   ├── src/                       # Исходный код
+│   ├── proto/                     # Протофайлы для gRPC
+│   │   └── order.proto            # Протокол для order-service
+│   ├── pom.xml                    # Maven файл
+│   └── README.md                  # Документация по микросервису
 │
 ├── notification-service/          # Микросервис для отправки уведомлений
-│   ├── src/
-│   ├── pom.xml
-│   └── README.md
+│   ├── src/                       # Исходный код
+│   ├── proto/                     # Протофайлы для gRPC
+│   │   └── notification.proto      # Протокол для notification-service
+│   ├── pom.xml                    # Maven файл
+│   └── README.md                  # Документация по микросервису
 │
 ├── payment-service/               # Микросервис для обработки платежей
-│   ├── src/
-│   ├── pom.xml
-│   └── README.md
+│   ├── src/                       # Исходный код
+│   ├── proto/                     # Протофайлы для gRPC
+│   │   └── payment.proto           # Протокол для payment-service
+│   ├── pom.xml                    # Maven файл
+│   └── README.md                  # Документация по микросервису
 │
 └── geolocation-service/           # Микросервис для определения геолокации
-    ├── src/
-    ├── pom.xml
-    └── README.md
+    ├── src/                       # Исходный код
+    ├── proto/                     # Протофайлы для gRPC
+    │   └── geolocation.proto       # Протокол для geolocation-service
+    ├── pom.xml                    # Maven файл
+    └── README.md                  # Документация по микросервису
 ```
 ### 5. Реализация микросервисов
 
