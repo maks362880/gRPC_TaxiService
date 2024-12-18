@@ -10,3 +10,14 @@ TaxiService — это микросервисное приложение для 
 - **Сервис уведомлений (Notification Service)**: отправляет пользователям уведомления о статусе их заказов (например, когда такси назначено или ожидает).
 - **Сервис оплаты (Payment Service)**: управляет платежами и трансакциями.
 - **Сервис геолокации (Geolocation Service)**: отвечает за определение географического положения пользователей и такси.
+- 
+## Порты сервисов:
+
+   После запуска сервисов вы сможете получить доступ к каждому из них по следующим адресам:
+
+   - User Service: http://localhost:8001
+   - Taxi Service: http://localhost:8002
+   - Order Service: http://localhost:8003
+   - Notification Service: http://localhost:8004
+   - Payment Service: http://localhost:8005
+   - Geolocation Service: http://localhost:8006
