@@ -23,19 +23,20 @@ TaxiService — это микросервисное приложение для 
    - Geolocation Service: http://localhost:8006
 
 ## Технологии для реализации проекта:
-Один репозиторий для всех микросервисов (Monorepo)
-SpringBoot,
-Maven,
-gRPC,
-Hibernate,
-Postgress,
-*openApi
-*Liqubase,
-*Docker,
-*K8s,
-*Kafka,
-*Helm,
-*Istio,
 
-'*' - неоязательные, но желательные к использованию в проекте.
+- **Один репозиторий для всех микросервисов (Monorepo)**
+- **SpringBoot**
+- **Maven**
+- **gRPC**
+- **Hibernate**
+- **Postgress**
+- **'*'openApi**
+- **'*'Liqubase**
+- **'*'Docker**
+- **'*'K8s**
+- **'*'Kafka**
+- **'*'Helm**
+- **'*'Istio**
+
+- **'*' - неоязательные, но желательные к использованию в проекте.**
 
