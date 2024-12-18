@@ -47,6 +47,8 @@ taxiservice/
 │   ├── src/                       # Исходный код
 │   ├── proto/                     # Протофайлы для gRPC
 │   │   └── user.proto             # Протокол для user-service
+│   ├── helm/                      # Helm Charts для деплоя в Kubernetes
+│   │   └── user-service/          # Helm Chart для user-service
 │   ├── pom.xml                    # Maven файл
 │   └── README.md                  # Документация по микросервису
 │
@@ -54,6 +56,8 @@ taxiservice/
 │   ├── src/                       # Исходный код
 │   ├── proto/                     # Протофайлы для gRPC
 │   │   └── taxi.proto             # Протокол для taxi-service
+│   ├── helm/                      # Helm Charts для деплоя в Kubernetes
+│   │   └── taxi-service/          # Helm Chart для taxi-service
 │   ├── pom.xml                    # Maven файл
 │   └── README.md                  # Документация по микросервису
 │
@@ -61,6 +65,8 @@ taxiservice/
 │   ├── src/                       # Исходный код
 │   ├── proto/                     # Протофайлы для gRPC
 │   │   └── order.proto            # Протокол для order-service
+│   ├── helm/                      # Helm Charts для деплоя в Kubernetes
+│   │   └── order-service/         # Helm Chart для order-service
 │   ├── pom.xml                    # Maven файл
 │   └── README.md                  # Документация по микросервису
 │
@@ -68,6 +74,8 @@ taxiservice/
 │   ├── src/                       # Исходный код
 │   ├── proto/                     # Протофайлы для gRPC
 │   │   └── notification.proto      # Протокол для notification-service
+│   ├── helm/                      # Helm Charts для деплоя в Kubernetes
+│   │   └── notification-service/   # Helm Chart для notification-service
 │   ├── pom.xml                    # Maven файл
 │   └── README.md                  # Документация по микросервису
 │
@@ -75,6 +83,8 @@ taxiservice/
 │   ├── src/                       # Исходный код
 │   ├── proto/                     # Протофайлы для gRPC
 │   │   └── payment.proto           # Протокол для payment-service
+│   ├── helm/                      # Helm Charts для деплоя в Kubernetes
+│   │   └── payment-service/        # Helm Chart для payment-service
 │   ├── pom.xml                    # Maven файл
 │   └── README.md                  # Документация по микросервису
 │
@@ -82,6 +92,8 @@ taxiservice/
     ├── src/                       # Исходный код
     ├── proto/                     # Протофайлы для gRPC
     │   └── geolocation.proto       # Протокол для geolocation-service
+    ├── helm/                      # Helm Charts для деплоя в Kubernetes
+    │   └── geolocation-service/    # Helm Chart для geolocation-service
     ├── pom.xml                    # Maven файл
     └── README.md                  # Документация по микросервису
 ```
