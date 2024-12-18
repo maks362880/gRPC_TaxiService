@@ -88,14 +88,29 @@ taxiservice/
 │   ├── pom.xml                    # Maven файл
 │   └── README.md                  # Документация по микросервису
 │
-└── geolocation-service/           # Микросервис для определения геолокации
-    ├── src/                       # Исходный код
-    ├── proto/                     # Протофайлы для gRPC
-    │   └── geolocation.proto       # Протокол для geolocation-service
-    ├── helm/                      # Helm Charts для деплоя в Kubernetes
-    │   └── geolocation-service/    # Helm Chart для geolocation-service
-    ├── pom.xml                    # Maven файл
-    └── README.md                  # Документация по микросервису
+│── geolocation-service/           # Микросервис для определения геолокации
+│   ├── src/                       # Исходный код
+│   ├── proto/                     # Протофайлы для gRPC
+│   │   └── geolocation.proto       # Протокол для geolocation-service
+│   ├── helm/                      # Helm Charts для деплоя в Kubernetes
+│   │   └── geolocation-service/    # Helm Chart для geolocation-service
+│   ├── pom.xml                    # Maven файл
+│   └── README.md                  # Документация по микросервису
+│
+├── istio/                         # Конфигурация для Istio
+│   ├── gateway.yaml               # Конфигурация Istio Gateway
+│   ├── virtual-service.yaml        # Конфигурация виртуального сервиса
+│   └── destination-rule.yaml       # Правила назначения для сервисов
+│
+├── liquibase/                     # Конфигурация Liquibase
+│   ├── changeLog.xml              # Основной файл с изменениями схемы базы данных
+│   └── changelog/                 # Более детализированные файлы изменений
+│       ├── user-service-changelog.xml    # Изменения для user-service
+│       ├── taxi-service-changelog.xml    # Изменения для taxi-service
+│       ├── order-service-changelog.xml   # Изменения для order-service
+│       ├── notification-service-changelog.xml  # Изменения для notification-service
+│       ├── payment-service-changelog.xml      # Изменения для payment-service
+│       └── geolocation-service-changelog.xml   # Изменения для geolocation-service
 ```
 ### 5. Реализация микросервисов
 
