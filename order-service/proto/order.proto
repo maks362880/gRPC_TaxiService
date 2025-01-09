@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package order;
+
+service OrderService {
+    rpc CreateOrder (CreateOrderRequest) returns (CreateOrderResponse);
+    rpc UpdateOrder (UpdateOrderRequest) returns (UpdateOrderResponse);
+    rpc CancelOrder (CancelOrderRequest) returns (CancelOrderResponse);
+}
+
+message CreateOrderRequest {
+    string userId = 1;
+    string taxiId = 2;
+    string pickupLocation = 3;
+    string dropoffLocation = 4;
+}
+
+message CreateOrderResponse {
+    string orderId = 1;
+    string message = 2; // сообщение о создании заказа
+}
+
+message UpdateOrderRequest {
+    string orderId = 1;
+    string status = 2; // новый статус заказа
+}
+
+message UpdateOrderResponse {
+    string message = 1; // сообщение об обновлении
+}
+
+message CancelOrderRequest {
+    string orderId = 1;
+}
+
+message CancelOrderResponse {
+    string message = 1; // сообщение об отмене заказа
+}

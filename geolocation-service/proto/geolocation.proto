@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package geolocation;
+
+service GeolocationService {
+    rpc GetUserLocation (GetUserLocationRequest) returns (GetUserLocationResponse);
+    rpc GetTaxiLocation (GetTaxiLocationRequest) returns (GetTaxiLocationResponse);
+}
+
+message GetUserLocationRequest {
+    string userId = 1;
+}
+
+message GetUserLocationResponse {
+    string userId = 1;
+    double latitude = 2;
+    double longitude = 3;
+}
+
+message GetTaxiLocationRequest {
+    string taxiId = 1;
+}
+
+message GetTaxiLocationResponse {
+    string taxiId = 1;
+    double latitude = 2;
+    double longitude = 3;
+}

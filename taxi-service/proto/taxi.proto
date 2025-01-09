@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package taxi;
+
+service TaxiService {
+    rpc AddTaxi (AddTaxiRequest) returns (AddTaxiResponse);
+    rpc UpdateTaxi (UpdateTaxiRequest) returns (UpdateTaxiResponse);
+    rpc ListTaxis (ListTaxisRequest) returns (ListTaxisResponse);
+}
+
+message AddTaxiRequest {
+    string model = 1;
+    string licensePlate = 2;
+    string status = 3;
+}
+
+message AddTaxiResponse {
+    string taxiId = 1;
+    string message = 2; // сообщение об успешном добавлении
+}
+
+message UpdateTaxiRequest {
+    string taxiId = 1;
+    string status = 2; // новый статус
+}
+
+message UpdateTaxiResponse {
+    string message = 1; // сообщение об обновлении
+}
+
+message ListTaxisRequest {}
+
+message ListTaxisResponse {
+    repeated Taxi taxis = 1; // список такси
+}
+
+message Taxi {
+    string taxiId = 1;
+    string model = 2;
+    string licensePlate = 3;
+    string status = 4;
+}

@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package payment;
+
+service PaymentService {
+    rpc InitiatePayment (InitiatePaymentRequest) returns (InitiatePaymentResponse);
+    rpc GetPaymentStatus (GetPaymentStatusRequest) returns (GetPaymentStatusResponse);
+}
+
+message InitiatePaymentRequest {
+    string orderId = 1;
+    double amount = 2;
+   }
+
+   message InitiatePaymentResponse {
+       string paymentId = 1;
+       string message = 2; // сообщение об успехе
+   }
+
+   message GetPaymentStatusRequest {
+       string paymentId = 1;
+   }
+
+   message GetPaymentStatusResponse {
+       string paymentId = 1;
+       string status = 2; // статус платежа
+   }
