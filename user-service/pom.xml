@@ -10,24 +10,33 @@
 
     <properties>
         <java.version>18</java.version>
-        <spring.version>2.5.4</spring.version>  <!-- Версия Spring Boot -->
-        <grpc.version>1.37.0</grpc.version>  <!-- Версия gRPC -->
-        <postgresql.version>42.2.23</postgresql.version>  <!-- Версия PostgreSQL драйвера -->
-        <liquibase.version>4.3.5</liquibase.version>  <!-- Версия Liquibase -->
+        <spring-boot.version>3.4.2</spring-boot.version>  <!-- Версия Spring Boot -->
+        <grpc.version>1.53.0</grpc.version>  <!-- Версия gRPC -->
+        <postgresql.version>42.7.2</postgresql.version>  <!-- Версия PostgreSQL драйвера -->
+        <liquibase.version>4.29.0</liquibase.version>  <!-- Версия Liquibase -->
+        <protobuf.version>4.28.2</protobuf.version> <!-- Версия protobuf -->
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
 
         <!-- Spring Boot Starter для веб-приложений -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring-boot.version}</version>
         </dependency>
 
         <!-- Spring Boot Starter для данных JPA -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>${spring-boot.version}</version>
         </dependency>
 
         <!-- Драйвер PostgreSQL -->
@@ -37,31 +46,37 @@
             <version>${postgresql.version}</version>
         </dependency>
 
-        <!-- Spring Boot Starter для работы с gRPC -->
-        <dependency>
-            <groupId>net.devh</groupId>
-            <artifactId>grpc-spring-boot-starter</artifactId>
-            <version>${grpc.version}</version>
-        </dependency>
+<!--        &lt;!&ndash; Spring Boot Starter для работы с gRPC &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>net.devh</groupId>-->
+<!--            <artifactId>grpc-spring-boot-starter</artifactId>-->
+<!--            <version>${grpc.version}</version>-->
+<!--        </dependency>-->
 
         <!-- Проект gRPC Protocol Buffers -->
-        <dependency>
-        <groupId>io.grpc</groupId>
-            <artifactId>grpc-protobuf</artifactId>
-            <version>${grpc.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--        <groupId>io.grpc</groupId>-->
+<!--            <artifactId>grpc-protobuf</artifactId>-->
+<!--            <version>${grpc.version}</version>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>io.grpc</groupId>
-            <artifactId>grpc-stub</artifactId>
-            <version>${grpc.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.grpc</groupId>-->
+<!--            <artifactId>grpc-stub</artifactId>-->
+<!--            <version>${grpc.version}</version>-->
+<!--        </dependency>-->
 
         <!-- Плагин для компиляции protobuf -->
         <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
-            <version>3.17.3</version> <!-- Используйте необходимую версию -->
+            <version>${protobuf.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java-util</artifactId>
+            <version>${protobuf.version}</version>
         </dependency>
 
         <!-- Liquibase для управления миграциями базы данных -->
@@ -78,26 +93,52 @@
             <version>2.0.16</version>
         </dependency>
 
-        <!-- Spring Security для аутентификации и авторизации (опционально) -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-
-        <!-- Завершение завершения зависимостей -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
+<!--        &lt;!&ndash; Spring Security для аутентификации и авторизации (опционально) &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-security</artifactId>-->
+<!--        </dependency>-->
 
     </dependencies>
 
     <build>
+
+        <extensions>
+            <extension>
+                <groupId>kr.motd.maven</groupId>
+                <artifactId>os-maven-plugin</artifactId>
+                <version>1.7.1</version>
+            </extension>
+        </extensions>
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
             </plugin>
+
+                <plugin>
+                    <groupId>org.xolstice.maven.plugins</groupId>
+                    <artifactId>protobuf-maven-plugin</artifactId>
+                    <version>0.6.1</version>
+                    <extensions>true</extensions>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>compile</goal>
+                                <goal>test-compile</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <additionalProtoPathElements>
+                            <additionalProtoPathElement>${project.basedir}/src/main/resources</additionalProtoPathElement>
+                        </additionalProtoPathElements>
+                        <protocArtifact>com.google.protobuf:protoc:${protobuf.version}:exe:${os.detected.classifier}</protocArtifact>
+                    </configuration>
+                </plugin>
+
         </plugins>
     </build>
 
