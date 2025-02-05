@@ -1,16 +1,19 @@
 package com.maks362880.userservice.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.UuidGenerator;
+import org.hibernate.proxy.HibernateProxy;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.UUID;
 
 @Entity
 @Table(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue(generator = "UUID")
+    @GeneratedValue
+    @UuidGenerator
     @Column(nullable = false, updatable = false)
     private String id;
 
@@ -29,18 +32,16 @@ public class User {
     @Column(nullable = false)
     private LocalDateTime registeredAt;
 
-
     public User() {
-        this.id = UUID.randomUUID().toString();
     }
 
+    @PrePersist
+    public void prePersist() {
+        this.registeredAt = LocalDateTime.now();
+    }
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getUsername() {
@@ -86,7 +87,16 @@ public class User {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null) return false;
+        Class<?> oEffectiveClass = o instanceof HibernateProxy
+                ? ((HibernateProxy) o).getHibernateLazyInitializer()
+                .getPersistentClass()
+                : o.getClass();
+        Class<?> thisEffectiveClass = this instanceof HibernateProxy
+                ? ((HibernateProxy) this).getHibernateLazyInitializer()
+                .getPersistentClass()
+                : this.getClass();
+        if (thisEffectiveClass != oEffectiveClass) return false;
         User user = (User) o;
         return Objects.equals(id, user.id);
     }
