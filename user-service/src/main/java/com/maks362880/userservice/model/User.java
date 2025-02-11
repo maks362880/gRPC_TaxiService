@@ -12,7 +12,6 @@ import java.util.Objects;
 public class User {
 
     @Id
-    @GeneratedValue
     @UuidGenerator
     @Column(nullable = false, updatable = false)
     private String id;

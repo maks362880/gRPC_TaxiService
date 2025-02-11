@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:17  # Используем PostgreSQL версии 17
+    container_name: postgres_userservice
+    environment:
+      POSTGRES_DB: userservice  # Имя базы данных
+      POSTGRES_USER: postgress  # Имя пользователя
+      POSTGRES_PASSWORD: postgress  # Пароль пользователя
+    ports:
+      - "5432:5432"  # Пробрасываем порт 5432 на хост
+    volumes:
+     # - postgres_data:/var/lib/postgresql/data  # Сохраняем данные в volume
+      - E:\db:/var/lib/postgresql/data  # Сохраняем данные на локальном диске
+    networks:
+      - userservice_network
+
+# volumes:
+#  postgres_data:  # Volume для хранения данных PostgreSQL
+
+networks:
+  userservice_network:  # Сеть для контейнеров

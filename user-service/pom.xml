@@ -106,17 +106,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- JUnit 5 -->
+
+        <!-- Spring Security Test -->
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.10.2</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.10.2</version>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -156,6 +150,18 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>${liquibase.version}</version>
+                <configuration>
+                    <changeLogFile>src/main/resources/db.changelog/db.changelog-master.xml</changeLogFile>
+                    <url>jdbc:postgresql://localhost:5432/userservice</url> <!-- URL к вашей базе данных -->
+                    <username>postgress</username> <!-- Имя пользователя для базы данных -->
+                    <password>postgress</password> <!-- Пароль для базы данных -->
+                </configuration>
             </plugin>
 
             <!-- Maven Compiler Plugin -->
