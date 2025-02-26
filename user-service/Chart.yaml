@@ -1,0 +1,11 @@
+apiVersion: v2
+name: user-service
+description:  A Helm chart for deploying the User Service in the TaxiService project.
+
+type: application
+
+# Версия Helm Chart
+version: 0.1.0
+
+# Версия приложения (должна совпадать с версией в pom.xml)
+appVersion: "1.0-SNAPSHOT"

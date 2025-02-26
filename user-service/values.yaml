@@ -1,0 +1,31 @@
+replicaCount: 1
+
+image:
+  repository: user-service
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8001
+
+resources:
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+  requests:
+    cpu: "250m"
+    memory: "256Mi"
+
+autoscaling:
+  enabled: true  # Включить или выключить автоскейлинг
+  minReplicas: 1  # Минимальное количество реплик
+  maxReplicas: 10  # Максимальное количество реплик
+  targetCPUUtilizationPercentage: 80  # Целевое использование CPU (в процентах)
+  targetMemoryUtilizationPercentage: 80  # Целевое использование памяти (в процентах)
+
+serviceAccount:
+  create: true  # Создавать Service Account или нет
+  name: "user-service-account"  # Имя Service Account (если не указано, будет использовано полное имя)
+  annotations: {}  # Аннотации для Service Account
+  automount: true  # Автоматически монтировать токен
