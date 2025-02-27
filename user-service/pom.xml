@@ -21,7 +21,8 @@
         <grpc.version>1.69.0</grpc.version>
         <postgresql.version>42.7.2</postgresql.version>
         <liquibase.version>4.29.0</liquibase.version>
-        <protobuf.version>4.28.2</protobuf.version>
+        <protobuf.version>4.29.3</protobuf.version>
+        <protoc-gen-openapiv2.version>2.0.0</protoc-gen-openapiv2.version>
     </properties>
 
     <dependencies>
@@ -100,6 +101,13 @@
             <version>${liquibase.version}</version>
         </dependency>
 
+        <!-- OpenAPI dependencies -->
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>2.2.22</version>
+        </dependency>
+
         <!-- Testing -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -140,6 +148,19 @@
                     <protocArtifact>com.google.protobuf:protoc:${protobuf.version}:exe:${os.detected.classifier}</protocArtifact>
                     <pluginId>grpc-java</pluginId>
                     <pluginArtifact>io.grpc:protoc-gen-grpc-java:${grpc.version}:exe:${os.detected.classifier}</pluginArtifact>
+<!--                    <outputDirectory>${project.build.directory}/generated-sources/protobuf</outputDirectory>-->
+<!--                    <clearOutputDirectory>false</clearOutputDirectory>-->
+<!--                    <protocPlugins>-->
+<!--                        <protocPlugin>-->
+<!--                            <id>openapiv2</id>-->
+<!--                            <groupId>io.grpc</groupId>-->
+<!--                            <artifactId>protoc-gen-openapiv2</artifactId>-->
+<!--                            <version>${protoc-gen-openapiv2.version}</version>-->
+<!--                            <mainClass>io.grpc.protocgen.ProtocGenOpenApiV2</mainClass>-->
+<!--                            &lt;!&ndash; Передаем параметры через pluginParameter &ndash;&gt;-->
+<!--                            <pluginParameter>&#45;&#45;openapiv2_out=allow_merge=true,merge_file_name=openapi,json_names_for_fields=true,output_format=yaml:${project.build.directory}/generated-sources/openapi</pluginParameter>-->
+<!--                        </protocPlugin>-->
+<!--                    </protocPlugins>-->
                 </configuration>
                 <executions>
                     <execution>

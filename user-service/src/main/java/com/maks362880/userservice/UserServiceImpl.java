@@ -2,20 +2,26 @@ package com.maks362880.userservice;
 
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
-import user.User;
-import user.UserServiceGrpc;
+import com.maks362880.user_service.proto.UserServiceGrpc;
+import com.maks362880.user_service.proto.RegisterRequest;
+import com.maks362880.user_service.proto.RegisterResponse;
+import com.maks362880.user_service.proto.StatusCode;
+import com.maks362880.user_service.proto.LoginResponse;
+import com.maks362880.user_service.proto.LoginRequest;
+import com.maks362880.user_service.proto.GetUserRequest;
+import com.maks362880.user_service.proto.GetUserResponse;
 
 @GrpcService
 public class UserServiceImpl extends UserServiceGrpc.UserServiceImplBase {
 
     @Override
-    public void register(User.RegisterRequest request, StreamObserver<User.RegisterResponse> responseObserver) {
+    public void register(RegisterRequest request, StreamObserver<RegisterResponse> responseObserver) {
         // Логика регистрации пользователя
         String userId = "12345"; // Здесь вы должны создать пользователя и получить его ID
 
-        User.RegisterResponse response = User.RegisterResponse.newBuilder()
+        RegisterResponse response = RegisterResponse.newBuilder()
                 .setUserId(userId)
-                .setStatusCode(User.StatusCode.SUCCESS)
+                .setStatusCode(StatusCode.SUCCESS)
                 .build();
 
         responseObserver.onNext(response);
@@ -23,13 +29,13 @@ public class UserServiceImpl extends UserServiceGrpc.UserServiceImplBase {
     }
 
     @Override
-    public void login(User.LoginRequest request, StreamObserver<User.LoginResponse> responseObserver) {
+    public void login(LoginRequest request, StreamObserver<LoginResponse> responseObserver) {
         // Логика аутентификации пользователя
         String token = "sample_jwt_token"; // Здесь должна быть логика создания JWT токена
 
-        User.LoginResponse response = User.LoginResponse.newBuilder()
+        LoginResponse response = LoginResponse.newBuilder()
                 .setToken(token)
-                .setStatusCode(User.StatusCode.SUCCESS)
+                .setStatusCode(StatusCode.SUCCESS)
                 .build();
 
         responseObserver.onNext(response);
@@ -37,12 +43,12 @@ public class UserServiceImpl extends UserServiceGrpc.UserServiceImplBase {
     }
 
     @Override
-    public void getUser(User.GetUserRequest request, StreamObserver<User.GetUserResponse> responseObserver) {
+    public void getUser(GetUserRequest request, StreamObserver<GetUserResponse> responseObserver) {
         // Логика получения пользователя
         String userId = request.getUserId();
         // Здесь нужно извлечь пользователя из базы данных по userId
 
-        User.GetUserResponse response = User.GetUserResponse.newBuilder()
+        GetUserResponse response = GetUserResponse.newBuilder()
                 .setUserId(userId)
                 .setUsername("sampleUsername") // Укажите фактическое имя пользователя
                 .setEmail("user@example.com") // Укажите фактический email

@@ -3,16 +3,34 @@ syntax = "proto3";
 package user;
 
 import "google/protobuf/timestamp.proto"; // Для временных меток
+import "google/api/annotations.proto"; // Для аннотаций HTTP
+
+option java_package = "com.maks362880.user_service.proto";
+option java_multiple_files = true;
 
 service UserService {
     // Регистрация нового пользователя
-    rpc Register (RegisterRequest) returns (RegisterResponse);
+    rpc Register (RegisterRequest) returns (RegisterResponse) {
+        option (google.api.http) = {
+            post: "/v1/users/register"
+            body: "*"
+        };
+    }
 
     // Аутентификация пользователя
-    rpc Login (LoginRequest) returns (LoginResponse);
+    rpc Login (LoginRequest) returns (LoginResponse) {
+        option (google.api.http) = {
+            post: "/v1/users/login"
+            body: "*"
+        };
+    }
 
     // Получение информации о пользователе
-    rpc GetUser (GetUserRequest) returns (GetUserResponse);
+    rpc GetUser (GetUserRequest) returns (GetUserResponse) {
+        option (google.api.http) = {
+            get: "/v1/users/{user_id}"
+        };
+    }
 }
 
 // Запрос на регистрацию
